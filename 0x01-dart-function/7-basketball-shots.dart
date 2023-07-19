@@ -1,23 +1,9 @@
-num getPoints(Map team) {
-  num points = 0;
-  team.forEach((key, value) {
-    if (key == 'Free throws') {
-      points += value;
-    } else if (key == '2 pointer') {
-      points += value * 2;
-    } else if (key == '3 pointer') {
-      points += value * 3;
-    }
-  });
-  return points;
-}
-
-num whoWins(Map teamA, Map teamB) {
-  num teamAPoints = getPoints(teamA);
-  num teamBPoints = getPoints(teamB);
-  if (teamAPoints > teamBPoints) {
+int whoWins(Map<String, int> team1, Map<String, int> team2) {
+  int team1Points = (team1["free throws"] ?? 0) + (team1["2 pointers"] ?? 0) * 2 + (team1["3 pointers"] ?? 0) * 3;
+  int team2Points = (team2["free throws"] ?? 0) + (team2["2 pointers"] ?? 0) * 2 + (team2["3 pointers"] ?? 0) * 3;
+    if (team1Points > team2Points) {
     return 1;
-  } else if (teamAPoints < teamBPoints) {
+  } else if (team1Points < team2Points) {
     return 2;
   } else {
     return 0;

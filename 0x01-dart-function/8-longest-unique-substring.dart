@@ -1,18 +1,16 @@
 String longestUniqueSubstring(String str) {
-	List longest = [];
-	List current = [];
-	for (var i = 0; i < str.length; i++) {
-		if (current.contains(str[i])) {
-			if (current.length > longest.length) {
-				longest = current;
-				current = [];
-			}
-		}
-		current.add(str[i]);
-	}
-	if (current.length > longest.length) {
-		longest = current;
-	}
-	String result = longest.join("");
-	return result;
+    int n = str.length;
+    String maxLength = "";
+    String position = "";
+    String at = "";
+    for (int i = 0; i < n; ++i) {
+        for (int x = i; x < str.length; ++x) {
+            position = str.substring(i, x + 1);
+            at = position.split('').toSet().join('');
+            if ((position.length > maxLength.length) && position == at) {
+                maxLength = position;
+                }
+        }
+    }
+	return maxLength;
 }
